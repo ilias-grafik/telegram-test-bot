@@ -112,3 +112,27 @@ if __name__ == "__main__":
     
     application.run_polling()
     app.run(port=5000)
+
+from threading import Thread
+
+def run_telegram_bot():
+    application = Application.builder().token(TOKEN).build()
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("abbonati", abbonati))
+    application.add_handler(CommandHandler("dati", dati))
+
+    conv_handler = ConversationHandler(
+        entry_points=[CommandHandler("dati", dati)],
+        states={
+            DATI_UTENTE: [MessageHandler(filters.TEXT & ~filters.COMMAND, ricevi_dati)],
+        },
+        fallbacks=[],
+    )
+    application.add_handler(conv_handler)
+
+    application.run_polling()
+
+if __name__ == "__main__":
+    Thread(target=run_telegram_bot).start()
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
