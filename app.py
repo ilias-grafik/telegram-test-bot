@@ -1,4 +1,5 @@
 from flask import Flask, request
+import os
 import stripe
 import telegram
 
@@ -28,14 +29,15 @@ def stripe_webhook():
     except Exception as e:
         return str(e), 400
 
-    # Verifica pagamento
+    # Verifica pagamento completato
     if event["type"] == "checkout.session.completed":
         session = event["data"]["object"]
         customer_email = session.get("customer_email")
 
-        # Invia messaggio al bot
+        # Invia messaggio al bot Telegram
         bot.send_message(chat_id=CHAT_ID_ADMIN, text=f"Nuovo abbonato: {customer_email}")
         return "Success", 200
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    port = int(os.environ.get("PORT", 10000))  # Usa la porta assegnata da Render
+    app.run(host="0.0.0.0", port=port)
