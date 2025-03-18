@@ -1,0 +1,4 @@
+flask
+stripe
+python-telegram-bot
+gunicorn
