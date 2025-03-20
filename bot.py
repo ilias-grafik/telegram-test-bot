@@ -35,7 +35,7 @@ async def abbonati(update: Update, context: CallbackContext):
             'price_data': {
                 'currency': 'eur',
                 'product_data': {'name': 'Abbonamento Sala Segnali'},
-                'unit_amount': 10000,
+                'unit_amount': 100,
             },
             'quantity': 1,
         }],
