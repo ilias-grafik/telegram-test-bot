@@ -16,7 +16,7 @@ CHAT_ID_ADMIN = ("188685892")
 STRIPE_SECRET_KEY = ("sk_test_51R2Y3xGhCywfxUMIYIkJYuf99XwXif3BqOylRScJdU9UyvPkr1n2mBfaUjoeocYxLmRl1qUxhENKw8SYYATWWH6m00FDWXeg90")
 STRIPE_WEBHOOK_SECRET = ("whsec_FB1N3cRTlzPnMwi289TbHw06vzJiw7ko")
 CHANNEL_LINK = ("https://t.me/+sO8O4qZSTVQxNGU0")
-stripe.api_key = STRIPE_SECRET_KEY
+stripe.api_key = ("sk_test_51R2Y3xGhCywfxUMIYIkJYuf99XwXif3BqOylRScJdU9UyvPkr1n2mBfaUjoeocYxLmRl1qUxhENKw8SYYATWWH6m00FDWXeg90")
 
 logging.basicConfig(level=logging.INFO)
 
