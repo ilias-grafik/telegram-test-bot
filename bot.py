@@ -5,7 +5,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext, ConversationHandler
 
 # Configura il bot e Stripe
-TOKEN = os.getenv("8048770790:AAHhxbJOU0unkZSsCMpOoCbCRJqb1VvROYw")
+TOKEN = ("8048770790:AAHhxbJOU0unkZSsCMpOoCbCRJqb1VvROYw")
 
 if not TOKEN:
     raise ValueError("❌ ERRORE: IL_TUO_BOT_TOKEN NON TROVATO! Assicurati di averlo impostato su Render.")
