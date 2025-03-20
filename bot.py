@@ -12,10 +12,10 @@ if not TOKEN:
 else:
     print(f"✅ Token caricato correttamente: {TOKEN}")
 
-CHAT_ID_ADMIN = os.getenv("188685892")
-STRIPE_SECRET_KEY = os.getenv("sk_test_51R2Y3xGhCywfxUMIYIkJYuf99XwXif3BqOylRScJdU9UyvPkr1n2mBfaUjoeocYxLmRl1qUxhENKw8SYYATWWH6m00FDWXeg90")
-STRIPE_WEBHOOK_SECRET = os.getenv("whsec_FB1N3cRTlzPnMwi289TbHw06vzJiw7ko")
-CHANNEL_LINK = os.getenv("https://t.me/+sO8O4qZSTVQxNGU0")
+CHAT_ID_ADMIN = ("188685892")
+STRIPE_SECRET_KEY = ("sk_test_51R2Y3xGhCywfxUMIYIkJYuf99XwXif3BqOylRScJdU9UyvPkr1n2mBfaUjoeocYxLmRl1qUxhENKw8SYYATWWH6m00FDWXeg90")
+STRIPE_WEBHOOK_SECRET = ("whsec_FB1N3cRTlzPnMwi289TbHw06vzJiw7ko")
+CHANNEL_LINK = ("https://t.me/+sO8O4qZSTVQxNGU0")
 stripe.api_key = STRIPE_SECRET_KEY
 
 logging.basicConfig(level=logging.INFO)
