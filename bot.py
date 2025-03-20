@@ -6,6 +6,12 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 
 # Configura il bot e Stripe
 TOKEN = os.getenv("8048770790:AAHhxbJOU0unkZSsCMpOoCbCRJqb1VvROYw")
+
+if not TOKEN:
+    raise ValueError("❌ ERRORE: IL_TUO_BOT_TOKEN NON TROVATO! Assicurati di averlo impostato su Render.")
+else:
+    print(f"✅ Token caricato correttamente: {TOKEN}")
+
 CHAT_ID_ADMIN = os.getenv("188685892")
 STRIPE_SECRET_KEY = os.getenv("sk_test_51R2Y3xGhCywfxUMIYIkJYuf99XwXif3BqOylRScJdU9UyvPkr1n2mBfaUjoeocYxLmRl1qUxhENKw8SYYATWWH6m00FDWXeg90")
 STRIPE_WEBHOOK_SECRET = os.getenv("whsec_FB1N3cRTlzPnMwi289TbHw06vzJiw7ko")
