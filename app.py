@@ -5,15 +5,14 @@ import os
 import json
 import stripe
 from flask import Flask, request, jsonify
-from telegram import Bot
+from telegram import Bot, ReplyKeyboardRemove
 
 # 🔐 Dati sensibili dalle variabili d'ambiente
-import os
-
 TELEGRAM_BOT_TOKEN = "8048770790:AAHhxbJOU0unkZSsCMpOoCbCRJqb1VvROYw"
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
 STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")
-CHANNEL_ID = os.getenv("https://t.me/+u-pC91RnQl82MDNk")  # Deve essere negativo, es. -100xxxxxxxxxx
+CHANNEL_LINK = os.getenv("CHANNEL_LINK")  # Link di invito al gruppo VIP
+CHAT_ID_ADMIN = os.getenv("CHAT_ID_ADMIN")  # ID dell'amministratore per notifiche
 
 stripe.api_key = STRIPE_SECRET_KEY
 bot = Bot(token=TELEGRAM_BOT_TOKEN)
@@ -42,12 +41,9 @@ def aggiorna_utente(telegram_id, attivo):
 def rimuovi_dal_gruppo(telegram_id):
     try:
         bot.ban_chat_member(chat_id=CHANNEL_ID, user_id=telegram_id)
-        bot.unban_chat_member(chat_id=CHANNEL_ID, user_id=telegram_id)  # Unban immediato = rimozione
+        bot.unban_chat_member(chat_id=CHANNEL_ID, user_id=telegram_id)
     except Exception as e:
         print(f"Errore nella rimozione dell'utente: {e}")
-
-def aggiungi_al_gruppo(telegram_id):
-    pass  # Solo l'utente può unirsi tramite link d'invito dopo il pagamento
 
 # 🚀 Flask app per i webhook
 app = Flask(__name__)
@@ -73,6 +69,18 @@ def stripe_webhook():
         if telegram_id:
             aggiorna_utente(telegram_id, attivo=True)
             print(f"✅ Pagamento completato per utente {telegram_id}")
+
+            try:
+                bot.send_message(
+                    chat_id=telegram_id,
+                    text=(
+                        "✅ Pagamento ricevuto!\n"
+                        "Prima di accedere al gruppo VIP, inviami i tuoi dati nel seguente formato:\n\n"
+                        "Nome Cognome\nNumero di telefono\nCome hai conosciuto questo canale?"
+                    )
+                )
+            except Exception as e:
+                print(f"Errore durante l'invio del messaggio a {telegram_id}: {e}")
 
     elif event_type == "invoice.payment_succeeded":
         subscription = event["data"]["object"]
