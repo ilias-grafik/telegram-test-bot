@@ -7,6 +7,14 @@ from telegram.ext import (
     CallbackContext, ConversationHandler
 )
 from dotenv import load_dotenv
+from flask import Flask  # 👈 Trucco per farlo sembrare un Web Service
+
+# Flask app fittizia per Render
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Bot attivo"
 
 # Carica le variabili d'ambiente dal file .env
 load_dotenv()
