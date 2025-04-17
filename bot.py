@@ -48,3 +48,5 @@ def rimuovi_dal_gruppo(telegram_id):
 def aggiungi_al_gruppo(telegram_id):
     pass  # Solo l'utente può unirsi tramite link d'invito dopo il pagamento
 
+if __name__ == "__main__":
+    application.run_polling()
