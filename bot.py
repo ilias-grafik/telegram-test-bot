@@ -10,7 +10,7 @@ from telegram import Bot
 # 🔐 Dati sensibili dalle variabili d'ambiente
 import os
 
-TELEGRAM_BOT_TOKEN = os.getenv("BOT_TOKEN")
+TELEGRAM_BOT_TOKEN = "8048770790:AAHhxbJOU0unkZSsCMpOoCbCRJqb1VvROYw"
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
 STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")
 CHANNEL_ID = os.environ.get("https://t.me/+u-pC91RnQl82MDNk")  # Deve essere negativo, es. -100xxxxxxxxxx
